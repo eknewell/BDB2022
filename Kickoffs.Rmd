@@ -1,0 +1,38 @@
+---
+title: "Kickoffs"
+author: "Mar and Eli"
+date: "11/2/2021"
+output: html_document
+---
+load packages
+```{r}
+library(tidyverse)
+library(gganimate)
+library(gifski)
+library(repr)
+```
+
+Read in data
+```{r}
+games <- read_csv('data/games.csv')
+pff <- read_csv('data/PFFScoutingData.csv')
+players <- read_csv('data/players.csv')
+plays <- read_csv('data/plays.csv')
+tracking2018 <- read_csv('data/tracking2018.csv')
+```
+
+Read in 2019 and 2020 tracking data if you want
+```{r}
+tracking2019 <- read_csv('data/tracking2019.csv')
+tracking2020 <- read_csv('data/tracking2020.csv')
+```
+Filter datasets down to kickoffs
+```{r}
+pff$gameplayid <- paste(pff$gameId, pff$playId)
+kickoffs <- plays %>% 
+  filter(specialTeamsPlayType == 'Kickoff')
+kickoffs$gameplayid <- paste(kickoffs$gameId, kickoffs$playId)
+pff_kickoffs <- pff[pff$gameplayid %in% kickoffs$gameplayid,]
+tracking2018$gameplayid <- paste(tracking2018$gameId, tracking2018$playId)
+kickoff_tracking_2018 <- tracking2018[tracking2018$gameplayid %in% kickoffs$gameplayid,]
+```

@@ -1,0 +1,39 @@
+---
+title: "Big Data Bowl 2022"
+author: "Mar and Eli"
+date: "10/26/2021"
+output: html_document
+---
+load packages
+```{r}
+library(tidyverse)
+library(gganimate)
+library(gifski)
+library(repr)
+```
+
+```{r}
+
+#setting plot width and height
+options(repr.plot.width=15, repr.plot.height = 10)
+
+
+```
+Read in data
+```{r}
+games <- read_csv('data/games.csv')
+pff <- read_csv('data/PFFScoutingData.csv')
+players <- read_csv('data/players.csv')
+plays <- read_csv('data/plays.csv')
+tracking2018 <- read_csv('data/tracking2018.csv')
+```
+
+Read in 2019 and 2020 tracking data if you want
+```{r}
+tracking2019 <- read_csv('data/tracking2019.csv')
+tracking2020 <- read_csv('data/tracking2020.csv')
+```
+
+
+
+
